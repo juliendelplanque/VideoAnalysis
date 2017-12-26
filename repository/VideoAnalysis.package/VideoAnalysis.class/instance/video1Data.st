@@ -1,4 +1,4 @@
-as yet unclassified
+accessing
 video1Data
 	^ self fileReferenceVideo1 readStreamDo: [ :stream | 
 		(NeoCSVReader on: stream)
