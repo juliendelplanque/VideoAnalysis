@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "VideoAnalysis",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"beginTime",
+		"endTime",
+		"note",
+		"comment",
+		"tool",
+		"step"
+	],
+	"name" : "VAItem",
+	"type" : "normal"
+}
