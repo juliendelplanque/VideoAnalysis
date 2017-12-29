@@ -1,7 +1,7 @@
 plots
 ganttPlotToolsUsage
 	| dict data plot i |
-	dict := self ganttData: self video1Data.
+	dict := self ganttData.
 	data := dict associations.
 	plot := MLBLinePlot new.
 	i := 1.
@@ -30,5 +30,7 @@ ganttPlotToolsUsage
 						width: 1.0;
 						marker: '|' ].
 			i := i + 1 ].
-	plot configYAxis: [ :xAxis | xAxis labels: {''} , (data collect: #head) ].
+	plot
+		configYAxis: [ :xAxis | xAxis labels: {''} , (data collect: #head) ];
+		configXAxis: [ :yAxis | yAxis min: 0 ].
 	^ plot

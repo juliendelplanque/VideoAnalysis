@@ -1,6 +1,6 @@
 accessing
-video1Data
-	^ self fileReferenceVideo1 readStreamDo: [ :stream | 
+videoData
+	^ self fileReferenceVideo readStreamDo: [ :stream | 
 		(NeoCSVReader on: stream)
 			recordClass: VAItem;
 			skipHeader;

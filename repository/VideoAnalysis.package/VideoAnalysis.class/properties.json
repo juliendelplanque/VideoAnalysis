@@ -6,7 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"directoryFileReference"
+		"directoryFileReference",
+		"fileReferenceVideo"
 	],
 	"name" : "VideoAnalysis",
 	"type" : "normal"
