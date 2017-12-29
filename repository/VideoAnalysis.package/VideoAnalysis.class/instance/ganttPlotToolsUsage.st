@@ -1,5 +1,6 @@
 plots
 ganttPlotToolsUsage
+	<vaPlot>
 	| dict data plot i |
 	dict := self ganttData.
 	data := dict associations.
@@ -32,5 +33,8 @@ ganttPlotToolsUsage
 			i := i + 1 ].
 	plot
 		configYAxis: [ :xAxis | xAxis labels: {''} , (data collect: #head) ];
-		configXAxis: [ :yAxis | yAxis min: 0 ].
+		configXAxis: [ :yAxis | 
+			yAxis
+				min: 0;
+				title: 'elapsed time (s)' ].
 	^ plot
