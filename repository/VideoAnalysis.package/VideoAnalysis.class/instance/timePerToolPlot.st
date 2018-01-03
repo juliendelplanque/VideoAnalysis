@@ -9,6 +9,10 @@ timePerToolPlot
 		color: Color blue;
 		configYAxis: [ :yAxis |
 			yAxis
-				title: '# minutes of usage' ];
+				title: '# minutes of usage';
+				max: 50 ];
+		configXAxis: [ :xAxis |
+			xAxis
+				labelsRotation: 45 ];
 		alignLabelCenter;
 		yourself.

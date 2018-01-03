@@ -1,9 +1,18 @@
 plots
 ganttPlotToolsUsage
 	<vaPlot>
-	| dict data plot i |
+	| dict data plot i colors |
 	dict := self ganttData.
-	data := dict associations.
+	data := dict associations sorted: [ :a :b |
+		a isNil and: [ b isNotNil or: [ a head > b head ] ] ].
+	colors := {
+	'Terminal' -> Color blue darker.
+	'Plan de migration' -> Color orange darker.
+	'Navigateur web' -> Color gray darker.
+	'Navicat' -> Color green darker.
+	'Editeur de texte' -> Color yellow darker.
+	nil -> Color red darker
+	}asDictionary.
 	plot := MLBLinePlot new.
 	i := 1.
 	data
@@ -27,7 +36,7 @@ ganttPlotToolsUsage
 								add: itemB endTime asSeconds @ i ].
 					line
 						points: points;
-						color: Color random;
+						color: (colors at: dataItem head);
 						width: 1.0;
 						marker: '|' ].
 			i := i + 1 ].
@@ -36,5 +45,7 @@ ganttPlotToolsUsage
 		configXAxis: [ :yAxis | 
 			yAxis
 				min: 0;
-				title: 'elapsed time (s)' ].
+				ticks: (0 to: 80 minutes asSeconds by: 20 minutes asSeconds);
+				labels: ((0 to: 80 minutes asSeconds by: 20 minutes asSeconds) collect: [ :tick | tick seconds asVAString ]);
+				title: 'elapsed time (hh:mm)' ].
 	^ plot
