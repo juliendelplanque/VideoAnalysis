@@ -3,16 +3,14 @@ ganttPlotToolsUsage
 	<vaPlot>
 	| dict data plot i colors |
 	dict := self ganttData.
-	data := dict associations sorted: [ :a :b |
-		a isNil and: [ b isNotNil or: [ a head > b head ] ] ].
-	colors := {
-	'Terminal' -> Color blue darker.
-	'Plan de migration' -> Color orange darker.
-	'Navigateur web' -> Color gray darker.
-	'Navicat' -> Color green darker.
-	'Editeur de texte' -> Color yellow darker.
-	nil -> Color red darker
-	}asDictionary.
+	data := dict associations
+		sorted: [ :a :b | a isNil and: [ b isNotNil or: [ a head > b head ] ] ].
+	colors := {('Terminal' -> Color blue darker).
+	('Plan de migration' -> Color orange darker).
+	('Navigateur web' -> Color gray darker).
+	('Navicat' -> Color green darker).
+	('Editeur de texte' -> Color yellow darker).
+	(nil -> Color red darker)} asDictionary.
 	plot := MLBLinePlot new.
 	i := 1.
 	data
@@ -20,7 +18,7 @@ ganttPlotToolsUsage
 			| valueList |
 			valueList := dataItem value.
 			plot
-				addLine: [ :line | 
+				addPointsLine: [ :line | 
 					| sorted points |
 					sorted := valueList sorted: [ :a :b | a beginTime < b beginTime ].
 					points := OrderedCollection new.
@@ -46,6 +44,8 @@ ganttPlotToolsUsage
 			yAxis
 				min: 0;
 				ticks: (0 to: 80 minutes asSeconds by: 20 minutes asSeconds);
-				labels: ((0 to: 80 minutes asSeconds by: 20 minutes asSeconds) collect: [ :tick | tick seconds asVAString ]);
+				labels:
+					((0 to: 80 minutes asSeconds by: 20 minutes asSeconds)
+						collect: [ :tick | tick seconds asVAString ]);
 				title: 'elapsed time (hh:mm)' ].
 	^ plot
