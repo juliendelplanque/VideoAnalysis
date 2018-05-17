@@ -1,22 +1,19 @@
 plots
 ganttPlotToolsUsage
 	<vaPlot>
-	| dict data plot i colors |
+	| dict data plot i |
 	dict := self ganttData.
 	data := dict associations
-		sorted: [ :a :b | a isNil and: [ b isNotNil or: [ a head > b head ] ] ].
-	colors := {('Terminal' -> Color blue darker).
-	('Plan de migration' -> Color orange darker).
-	('Navigateur web' -> Color gray darker).
-	('Navicat' -> Color green darker).
-	('Editeur de texte' -> Color yellow darker).
-	(nil -> Color red darker)} asDictionary.
+		sorted: [ :a :b | (self labelToColor keys indexOf: a key) < (self labelToColor keys indexOf: b key) ].
 	plot := MLBLinePlot new.
 	i := 1.
 	data
 		do: [ :dataItem | 
 			| valueList |
 			valueList := dataItem value.
+			valueList
+				ifEmpty: [ plot addPointsLine: [ :line | Float nan @ Float nan ] ]
+				ifNotEmpty: [
 			plot
 				addPointsLine: [ :line | 
 					| sorted points |
@@ -34,12 +31,12 @@ ganttPlotToolsUsage
 								add: itemB endTime asSeconds @ i ].
 					line
 						points: points;
-						color: (colors at: dataItem head);
+						color: (self labelToColor at: dataItem head);
 						width: 1.0;
 						marker: '|' ].
-			i := i + 1 ].
+			i := i + 1 ] ].
 	plot
-		configYAxis: [ :xAxis | xAxis labels: {''} , (data collect: #head) ];
+		configYAxis: [ :xAxis | xAxis labels: {''} , (data collect: [ :assoc | self labelToPlotLabel at: assoc head]), {''} ];
 		configXAxis: [ :yAxis | 
 			yAxis
 				min: 0;

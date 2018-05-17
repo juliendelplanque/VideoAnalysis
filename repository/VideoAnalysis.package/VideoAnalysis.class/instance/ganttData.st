@@ -8,4 +8,6 @@ ganttData
 				beginTime: array first beginTime;
 				endTime: array last endTime;
 				yourself ]) ].
+	(self labelToPlotLabel keys \ dict keys) do: [ :key |
+		dict at: key put: #() ].
 	^ dict 
