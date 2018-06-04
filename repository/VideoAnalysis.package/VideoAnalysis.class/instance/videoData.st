@@ -14,4 +14,5 @@ videoData
 				comment: data fourth;
 				tool: data fifth;
 				step: data sixth;
+				activity: data seventh asInteger;
 				yourself ]

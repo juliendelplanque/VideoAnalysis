@@ -11,7 +11,8 @@
 		"note",
 		"comment",
 		"tool",
-		"step"
+		"step",
+		"activity"
 	],
 	"name" : "VAItem",
 	"type" : "normal"
