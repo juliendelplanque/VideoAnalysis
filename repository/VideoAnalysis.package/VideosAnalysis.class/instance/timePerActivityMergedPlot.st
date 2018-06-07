@@ -16,7 +16,9 @@ timePerActivityMergedPlot
 				max: (data collect: #sum) max + 5 ];
 		configXAxis: [ :xAxis |
 			xAxis
-				labelsRotation: 45;
+				labelsRotation: 90;
 				title: 'Activity type #' ];
+		style: self style;
+		barWidth: 0.75;
 		alignLabelCenter;
 		yourself.

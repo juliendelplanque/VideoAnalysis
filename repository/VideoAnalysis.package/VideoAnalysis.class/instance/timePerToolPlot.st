@@ -1,6 +1,6 @@
 plots
 timePerToolPlot
-	<vaPlot>
+	"<vaPlot>"
 	| data |
 	data := self timePerTool.
 	^ MLBBarPlot new

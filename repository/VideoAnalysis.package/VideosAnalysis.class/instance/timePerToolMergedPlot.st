@@ -20,5 +20,6 @@ timePerToolMergedPlot
 		configXAxis: [ :xAxis |
 			xAxis
 				labelsRotation: 45 ];
+		style: self style;
 		alignLabelCenter;
 		yourself.
