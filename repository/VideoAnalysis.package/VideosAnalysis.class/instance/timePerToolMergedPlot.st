@@ -9,9 +9,9 @@ timePerToolMergedPlot
 	
 	^ MLBStackedBarPlot new
 		dataList: data;
-		labels: ((self videoAnalyses first timePerTool keys sorted: [ :a :b | 
+		labels: (((self videoAnalyses first timePerTool keys sorted: [ :a :b | 
 			(self videoAnalyses first labelToPlotLabel keys indexOf: a) < (self videoAnalyses first labelToPlotLabel keys indexOf: b) ])
-				collect: [ :label | self videoAnalyses first labelToPlotLabel at: label ]);
+				collect: [ :label | self videoAnalyses first labelToPlotLabel at: label ]) collect: [ :str | str copyReplaceAll: ' ' with: String lf ]);
 		colorList: { Color gray darker darker . Color gray . Color gray lighter lighter };
 		configYAxis: [ :yAxis |
 			yAxis
@@ -19,7 +19,7 @@ timePerToolMergedPlot
 				max: (data collect: #sum) max + 5 ];
 		configXAxis: [ :xAxis |
 			xAxis
-				labelsRotation: 45 ];
+				labelsRotation: 60 ];
 		style: self style;
-		alignLabelCenter;
+		alignLabelEdge;
 		yourself.

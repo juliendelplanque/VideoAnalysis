@@ -10,3 +10,4 @@ generatePlotsIn: aDirectoryFileReference withExtension: extension
 		
 	self timePerActivityMergedPlot generateIn: aDirectoryFileReference / 'timePerActivity.pdf'.
 	self timePerToolMergedPlot generateIn: aDirectoryFileReference / 'timePerTool.pdf'.
+	self timePerActivityOccurencesMergedPlot generateIn: aDirectoryFileReference / 'activityOccurences.pdf'.

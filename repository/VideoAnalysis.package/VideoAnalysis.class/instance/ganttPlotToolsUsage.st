@@ -1,6 +1,6 @@
 plots
 ganttPlotToolsUsage
-	<vaPlot>
+	"<vaPlot>"
 	| dict data plot i |
 	dict := self ganttData.
 	data := dict associations
