@@ -10,14 +10,15 @@ timePerToolMergedPlot
 		sorted: [ :a :b | 
 			(self videoAnalyses first labelToPlotLabel keys indexOf: a head)
 				< (self videoAnalyses first labelToPlotLabel keys indexOf: b head) ])
-		collect: [ :assoc | 
+		reject: [ :assoc | assoc head isNil ]
+		thenCollect: [ :assoc | 
 			{assoc value asMinutes.
 			(data second at: assoc key) asMinutes.
 			(data third at: assoc key) asMinutes} ].
 	^ MLBStackedBarPlot new
 		dataList: data;
 		labels:
-			(((self videoAnalyses first timePerTool keys
+			((((self videoAnalyses first timePerTool keys reject: #isNil)
 				sorted: [ :a :b | 
 					(self videoAnalyses first labelToPlotLabel keys indexOf: a)
 						< (self videoAnalyses first labelToPlotLabel keys indexOf: b) ])
